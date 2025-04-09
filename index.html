@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Diskon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="number"], input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="button"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Kalkulator Diskon</h1>
+    <label for="hargaAwal">Harga Awal:</label>
+    <input type="number" id="hargaAwal" placeholder="Masukkan harga awal" required>
+
+    <label for="persenDiskon">Persentase Diskon (%):</label>
+    <input type="number" id="persenDiskon" placeholder="Masukkan persentase diskon" required>
+
+    <input type="button" value="Hitung Diskon" onclick="hitungDiskon()">
+
+    <div class="result" id="hasil"></div>
+</div>
+
+<script>
+    function hitungDiskon() {
+        var hargaAwal = parseFloat(document.getElementById('hargaAwal').value);
+        var persenDiskon = parseFloat(document.getElementById('persenDiskon').value);
+
+        if (isNaN(hargaAwal) || isNaN(persenDiskon)) {
+            alert("Silakan masukkan nilai yang valid.");
+            return;
+        }
+
+        var diskon = (persenDiskon / 100) * hargaAwal;
+        var hargaSetelahDiskon = hargaAwal - diskon;
+
+        document.getElementById('hasil').innerHTML = 
+            "Diskon: Rp " + diskon.toFixed(2) + "<br>" +
+            "Harga Setelah Diskon: Rp " + hargaSetelahDiskon.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
