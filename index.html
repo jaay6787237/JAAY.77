@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #945252;
+            background-color: #7930d7;
             margin: 0;
             padding: 0;
             height: 100vh; /* Menggunakan full viewport height */
@@ -60,11 +60,6 @@
         hitungDiskon(); // Panggil hitungDiskon setiap kali input berubah
     }
 
-    // Fungsi untuk memformat angka menjadi Rupiah (dengan titik pemisah ribuan)
-    function formatRupiah(angka) {
-        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
-
     // Fungsi untuk menghitung diskon dan menampilkan hasil
     function hitungDiskon() {
         var hargaAwal = parseFloat(document.getElementById('hargaAwal').value.replace(/\./g, ''));
@@ -76,7 +71,7 @@
             return;
         }
 
-        // Validasi agar diskon tidak lebih dari 100%e:\kalkulatorukk\index.html
+        // Validasi agar diskon tidak lebih dari 100%e:
         if (persenDiskon > 100) {
             document.getElementById('hasil').innerHTML = "DISKON TIDAK VALID";
             return;
@@ -92,8 +87,8 @@
         var hargaSetelahDiskon = hargaAwal - diskon;
 
         document.getElementById('hasil').innerHTML = 
-            "Diskon: Rp " + formatRupiah(diskon.toFixed(2)) + "<br>" +
-            "Harga Setelah Diskon: Rp " + formatRupiah(hargaSetelahDiskon.toFixed(2));
+            "Diskon: Rp " + new Intl.NumberFormat("id-ID").format(diskon) + "<br>" +
+            "Harga Setelah Diskon: Rp " + new Intl.NumberFormat("id-ID").format(hargaSetelahDiskon);
     }
 
     // Tambahkan event listener untuk input hargaAwal dan persenDiskon
